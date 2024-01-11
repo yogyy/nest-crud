@@ -15,11 +15,11 @@ model User {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 
-  email    String     @unique
-  hash     String
-  firsname String?
-  lastName String?
-  bookmark Bookmark[]
+  email     String     @unique
+  hash      String
+  firstName String?
+  lastName  String?
+  bookmark  Bookmark[]
 
   @@map("users")
 }
