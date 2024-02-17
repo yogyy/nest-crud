@@ -16,7 +16,7 @@ export class UserService {
       },
     });
 
-    delete user.hash;
+    delete user.hash, delete user.refreshToken;
 
     return user;
   }

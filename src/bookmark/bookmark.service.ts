@@ -24,13 +24,16 @@ export class BookmarkService {
     });
   }
 
-  getBookmarkById(userId: number, bookmarkId: number) {
-    return this.prisma.bookmark.findFirst({
+  async getBookmarkById(userId: number, bookmarkId: number) {
+    const bookmark = await this.prisma.bookmark.findFirst({
       where: {
         id: bookmarkId,
         userId,
       },
     });
+    if (!bookmark) throw new ForbiddenException('Bookmark not found');
+
+    return bookmark;
   }
 
   async editBookmarkById(
