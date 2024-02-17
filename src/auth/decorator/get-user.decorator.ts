@@ -9,3 +9,11 @@ export const GetUser = createParamDecorator(
     return request.user;
   },
 );
+
+export const GetCurrentUserId = createParamDecorator(
+  (_: undefined, context: ExecutionContext): number => {
+    const request = context.switchToHttp().getRequest();
+    const user = request.user as { sub: number; email: string };
+    return user.sub;
+  },
+);
