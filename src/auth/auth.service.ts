@@ -19,7 +19,7 @@ export class AuthService {
     });
     if (!user) throw new ForbiddenException('User not Found');
     const pwMatch = await argon.verify(user.hash, dto.password);
-    if (!pwMatch) throw new ForbiddenException('Wrong Password');
+    if (!pwMatch) throw new ForbiddenException('Invalid login credentials');
     const tokens = await this.signToken(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);
 
